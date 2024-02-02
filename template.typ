@@ -1,4 +1,4 @@
-// This function gets your whole document as its `body` and formats
+This function gets your whole document as its `body` and formats
 // it as an article in the style of the IEEE.
 #let resume(
   // The paper's title.
@@ -149,11 +149,10 @@
       ] else [
         // Third level headings are run-ins too, but different.
         #if it.level == 3 {
-          numbering( "1.1.1", levels.at(0), levels.at(1), levels.at(0))
+          numbering( "1.1.1", levels.at(0), levels.at(1), levels.at(2))
           [ ]
         }
-        #h(1em)
-        #(it.body)
+        #h(1em)#(it.body)
       ]
     }
   )  
