@@ -107,7 +107,7 @@
   set list(indent: 10pt, body-indent: 9pt)
 
   // Configure headings.
-  set heading(numbering: "I.A.1.")
+  set heading(numbering: "I.1.1.")
   show heading: it => locate(
     loc => {
 
@@ -125,22 +125,23 @@
         // We don't want to number of the acknowledgment section.
         #let is-ack = it.body in ([Acknowledgment], [Acknowledgement])
         #set align(center)
-        #set text(if is-ack { 10pt } else { 12pt })
+        #set text(weight: "bold", if is-ack { 10pt } else { 12pt })
         #show: smallcaps
         #v(20pt, weak: true)
         #if it.numbering != none and not is-ack {
-          numbering("I.", deepest)
+          numbering("I.", levels.at(0))
           h(7pt, weak: true)
         }
         #it.body
         #v(13.75pt, weak: true)
       ] else if it.level == 2 [
         // Second-level headings are run-ins.
+        #set text(weight: "bold")
         #set par(first-line-indent: 0pt)
-        #set text(style: "italic")
+        // #set text(style: "italic")
         #v(10pt, weak: true)
         #if it.numbering != none {
-          numbering("A.", deepest)
+          numbering("1.1", levels.at(0), levels.at(1))
           h(7pt, weak: true)
         }
         #it.body
@@ -148,10 +149,11 @@
       ] else [
         // Third level headings are run-ins too, but different.
         #if it.level == 3 {
-          numbering( "1)", deepest)
+          numbering( "1.1.1", levels.at(0), levels.at(1), levels.at(0))
           [ ]
         }
-        _#(it.body):_
+        #h(1em)
+        #(it.body)
       ]
     }
   )  
