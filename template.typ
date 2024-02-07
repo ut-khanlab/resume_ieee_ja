@@ -172,7 +172,7 @@ This function gets your whole document as its `body` and formats
       columns: slice.len() * (1fr,),
       gutter: 12pt,
       ..slice.map(author => align(center, {
-        text(12pt, author.name)
+        text(12pt, [#author.name #footnote[#author.location] ])
         if "department" in author [
           \ #emph(author.department)
         ]
